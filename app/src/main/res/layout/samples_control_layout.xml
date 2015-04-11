@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/btn_edit"
+        android:onClick="onButtonClick"
+        android:layout_alignTop="@+id/btn_delete"
+        android:layout_toRightOf="@+id/btn_delete"
+        android:layout_toEndOf="@+id/btn_delete" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Del"
+        android:id="@+id/btn_delete"
+        android:onClick="onButtonClick"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/spinner_samples"
+        android:layout_toRightOf="@+id/btn_add"
+        android:layout_toEndOf="@+id/btn_add" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/spinner_samples"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/preview"
+        android:layout_below="@+id/btn_edit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:id="@+id/btn_play"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onButtonClick" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop"
+            android:id="@+id/btn_stop"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btn_play"
+            android:layout_toEndOf="@+id/btn_play"
+            android:enabled="false"
+            android:onClick="onButtonClick" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/btn_add"
+        android:onClick="onButtonClick"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/spinner_samples"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EarsExApp</string>
+    <string name="samples_dir_name">Samples</string>
+    <string name="def_sample_name">New sample name</string>
+</resources>
