@@ -53,4 +53,17 @@
             android:onClick="onSamplesControlBtn" />
     </TableRow>
 
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Txt"
+            android:id="@+id/txt_out"
+            android:layout_column="0" />
+    </TableRow>
+
 </TableLayout>
