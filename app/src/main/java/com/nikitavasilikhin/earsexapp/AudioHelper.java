@@ -163,6 +163,13 @@ class MicrophoneRecordSampleTask extends MicrophoneTaskBase {
     private String mSampleFileName;
     private FileOutputStream mSampleFileOutStream;
 
+    static {
+        System.loadLibrary("EarsExApp");
+    }
+
+    // Signal size = fft size
+    private static native float[] Fft(float[] signal);
+
     public MicrophoneRecordSampleTask(File samplesDir, String sampleFileName) {
         super();
 
@@ -192,6 +199,11 @@ class MicrophoneRecordSampleTask extends MicrophoneTaskBase {
     @Override
     void processBuf(short[] buf) {
         try {
+            float[] fBuf = new float[buf.length];
+            for (int i = 0; i < buf.length; ++i)
+                fBuf[i] = buf[i];
+            float[] res = Fft(fBuf);
+
             ByteBuffer byteBuf = ByteBuffer.allocate(2 * buf.length);
             for (int i = 0; i < buf.length; ++i)
                 byteBuf.putShort(buf[i]);

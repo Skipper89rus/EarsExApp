@@ -1,0 +1,1 @@
+#pragma once#include <jni.h>#include <Fft.h>#ifdef __cplusplusextern "C" {#endifJNIEXPORT jfloatArray JNICALL Java_com_nikitavasilikhin_earsexapp_MainActivity_Fft(JNIEnv* env, jclass cls, jfloatArray signal);#ifdef __cplusplus}#endif

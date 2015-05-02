@@ -18,13 +18,6 @@ public class MainActivity extends Activity {
 
     public Button mStartBtn;
     public Button mStopBtn;
-    public TextView mTxt;
-
-    static {
-        System.loadLibrary("earsexapp");
-    }
-
-    private static native String stringFromJNI();
 
     public MicrophonePlaybackTask mMicPlaybackTask;
 
@@ -35,15 +28,11 @@ public class MainActivity extends Activity {
 
         mStartBtn = (Button) findViewById(R.id.btn_start);
         mStopBtn = (Button) findViewById(R.id.btn_stop);
-
-        mTxt = (TextView) findViewById(R.id.txt_out);
     }
 
     public void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.btn_start:
-                final String message = stringFromJNI();
-                mTxt.setText(message);
                 /*mStartBtn.setEnabled(false); // TODO: нужен рефакт
                 mStopBtn.setEnabled(true);
 
