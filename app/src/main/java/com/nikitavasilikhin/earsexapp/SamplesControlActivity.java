@@ -18,11 +18,6 @@ public class SamplesControlActivity extends Activity {
     public Spinner mSamplesSpinner;
     private File mSamplesDir;
 
-    public Button mPlayBtn;
-    public Button mStopBtn;
-
-    public PlaySampleTask mPlaySampleTask;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +25,6 @@ public class SamplesControlActivity extends Activity {
         setContentView(R.layout.samples_control_layout);
 
         mSamplesSpinner = (Spinner) findViewById(R.id.spinner_samples);
-
-        mPlayBtn = (Button) findViewById(R.id.btn_play);
-        mStopBtn = (Button) findViewById(R.id.btn_stop);
     }
 
     @Override
@@ -84,10 +76,6 @@ public class SamplesControlActivity extends Activity {
         mSamplesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mPlayBtn.setEnabled(true);
-                mStopBtn.setEnabled(false);
-
-                //mPlaySampleTask = new PlaySampleTask(mSamplesDir, mSamplesSpinner.getSelectedItem().toString());
             }
 
             @Override
@@ -112,27 +100,6 @@ public class SamplesControlActivity extends Activity {
                 break;
             case R.id.btn_edit:
                 intent = new Intent(this, EditSampleActivity.class);
-                break;
-
-            // Preview btns
-            case R.id.btn_play:
-                if (!isSamplesDirAvailable())
-                    return;
-
-                mPlayBtn.setEnabled(false);
-                mStopBtn.setEnabled(true);
-
-                mPlaySampleTask = new PlaySampleTask(mSamplesDir, mSamplesSpinner.getSelectedItem().toString());
-                mPlaySampleTask.execute();
-                break;
-            case R.id.btn_stop:
-                mPlayBtn.setEnabled(true);
-                mStopBtn.setEnabled(false);
-
-                if (mPlaySampleTask != null) {
-                    mPlaySampleTask.cancel(false);
-                    mPlaySampleTask = null;
-                }
                 break;
         }
         if (intent != null)

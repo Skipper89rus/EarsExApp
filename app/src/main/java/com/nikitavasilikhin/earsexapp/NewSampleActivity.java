@@ -1,21 +1,26 @@
 package com.nikitavasilikhin.earsexapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.List;
 
 public class NewSampleActivity extends Activity {
 
-    private EditText mSampleName;
-    private File mSamplesDir;
+    private EditText m_sampleName;
+    private EditText m_freqRanges;
+    private File m_samplesDir;
 
-    private MicrophoneRecordSampleTask mMicRecordSampleTask;
+    private boolean m_isRecStarted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +28,16 @@ public class NewSampleActivity extends Activity {
 
         setContentView(R.layout.new_sample_layout);
 
-        mSampleName = (EditText) findViewById(R.id.editTxt_sample_name);
+        m_sampleName = (EditText) findViewById(R.id.sample_name_txt);
+        m_freqRanges = (EditText) findViewById(R.id.freq_ranges_txt);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        mSamplesDir = new File(getIntent().getStringExtra("samples_dir"));
-        mSampleName.setText(getFreeSampleName());
+        m_samplesDir = new File(getIntent().getStringExtra("samples_dir"));
+        m_sampleName.setText(getFreeSampleName());
     }
 
     boolean isSamplesDirAvailable() {
@@ -40,7 +46,7 @@ public class NewSampleActivity extends Activity {
             return false;
         }
 
-        return mSamplesDir.exists();
+        return m_samplesDir.exists();
     }
 
     boolean isSampleNameFree(String name) {
@@ -50,7 +56,7 @@ public class NewSampleActivity extends Activity {
         if (!isSamplesDirAvailable())
             return false;
 
-        List<String> files = Arrays.asList(mSamplesDir.list());
+        List<String> files = Arrays.asList(m_samplesDir.list());
         return !files.contains(name);
     }
 
@@ -61,28 +67,59 @@ public class NewSampleActivity extends Activity {
         int idx = 1;
         String name = String.format("Sample %d", idx);
 
-        List<String> files = Arrays.asList(mSamplesDir.list());
+        List<String> files = Arrays.asList(m_samplesDir.list());
         while (files.contains(name))
             name = String.format("Sample %d", ++idx);
 
         return name;
     }
 
-    public void onButtonClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_record:
-                if (!isSampleNameFree(mSampleName.getText().toString()))
-                    return;
-                // TODO: enable/disable btns
-                mMicRecordSampleTask = new MicrophoneRecordSampleTask(mSamplesDir, mSampleName.getText().toString());
-                mMicRecordSampleTask.execute();
-                break;
-            case R.id.btn_stop:
-                if (mMicRecordSampleTask != null) {
-                    mMicRecordSampleTask.cancel(false);
-                    mMicRecordSampleTask = null;
-                }
-                break;
+    public void onRecStopBtnClick(View v)
+    {
+        if (v.getId() == R.id.record_stop_btn)
+        {
+            Button startStopBtn = (Button) findViewById(R.id.record_stop_btn);
+
+            if (m_isRecStarted) {
+                startStopBtn.setText("Rec");
+
+                m_freqRanges.setVisibility(View.VISIBLE);
+            }
+            else {
+                startStopBtn.setText("Stop");
+
+                m_freqRanges.setVisibility(View.INVISIBLE);
+            }
+
+            m_isRecStarted = !m_isRecStarted;
+        }
+    }
+
+    public void onSaveBtnClick(View v)
+    {
+        if ( !isSampleNameFree(m_sampleName.getText().toString()) )
+            return;
+
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            System.err.println("SD-card not mounted!");
+            return;
+        }
+
+        if (!m_samplesDir.exists())
+            return;
+
+        try
+        {
+            File sampleFile = new File(m_samplesDir, m_sampleName.getText().toString());
+            sampleFile.createNewFile();
+
+            FileOutputStream outStream = new FileOutputStream(sampleFile, true);
+            outStream.write(m_freqRanges.getText().toString().getBytes());
+            outStream.close();
+        }
+        catch (Exception ex)
+        {
+            return;
         }
     }
 }

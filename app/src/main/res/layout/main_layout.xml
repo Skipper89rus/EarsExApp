@@ -1,69 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:text="Start"
+        android:id="@+id/start_stop_btn"
+        android:enabled="true"
+        android:onClick="onStartStopBtnClick"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:text="Start"
-            android:id="@+id/btn_start"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:enabled="true"
-            android:onClick="onButtonClick"
-            android:layout_alignTop="@+id/relativeLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <ProgressBar
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/progress_working"
+        android:indeterminate="false"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/start_stop_btn"
+        android:layout_toEndOf="@+id/start_stop_btn" />
 
-        <ProgressBar
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/progress_working"
-            android:indeterminate="false"
-            android:layout_column="1" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Samples Control"
+        android:id="@+id/samples_control_btn"
+        android:onClick="onSamplesControlBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:text="Stop"
-            android:id="@+id/btn_stop"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:enabled="false"
-            android:onClick="onButtonClick"/>
-    </TableRow>
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/suppression_ratio_nud"
+        android:orientation="vertical"
+        android:layout_below="@+id/start_stop_btn"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp" />
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Samples Control"
-            android:id="@+id/btn_samples_control"
-            android:layout_column="0"
-            android:onClick="onSamplesControlBtn" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Txt"
-            android:id="@+id/txt_out"
-            android:layout_column="0" />
-    </TableRow>
-
-</TableLayout>
+</RelativeLayout>

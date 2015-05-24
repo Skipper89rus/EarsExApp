@@ -3,15 +3,26 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/spinner_samples"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btn_add"
+        android:layout_toStartOf="@+id/btn_add"
+        android:layout_alignBottom="@+id/btn_add" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit"
-        android:id="@+id/btn_edit"
+        android:text="Add"
+        android:id="@+id/btn_add"
         android:onClick="onButtonClick"
-        android:layout_alignTop="@+id/btn_delete"
-        android:layout_toRightOf="@+id/btn_delete"
-        android:layout_toEndOf="@+id/btn_delete" />
+        android:nestedScrollingEnabled="false"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btn_delete"
+        android:layout_toStartOf="@+id/btn_delete" />
 
     <Button
         android:layout_width="wrap_content"
@@ -20,18 +31,19 @@
         android:id="@+id/btn_delete"
         android:onClick="onButtonClick"
         android:nestedScrollingEnabled="false"
-        android:layout_below="@+id/spinner_samples"
-        android:layout_toRightOf="@+id/btn_add"
-        android:layout_toEndOf="@+id/btn_add" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:id="@+id/spinner_samples"
-        android:spinnerMode="dropdown"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false" />
+        android:layout_toLeftOf="@+id/btn_edit"
+        android:layout_toStartOf="@+id/btn_edit" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/btn_edit"
+        android:onClick="onButtonClick"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -41,38 +53,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play"
-            android:id="@+id/btn_play"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="onButtonClick" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stop"
-            android:id="@+id/btn_stop"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/btn_play"
-            android:layout_toEndOf="@+id/btn_play"
-            android:enabled="false"
-            android:onClick="onButtonClick" />
-
     </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:id="@+id/btn_add"
-        android:onClick="onButtonClick"
-        android:nestedScrollingEnabled="false"
-        android:layout_below="@+id/spinner_samples"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

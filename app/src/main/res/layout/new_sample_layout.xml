@@ -6,32 +6,41 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTxt_sample_name"
+        android:id="@+id/sample_name_txt"
         android:text="@string/def_sample_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/btn_record"
-        android:layout_toLeftOf="@+id/btn_record"
-        android:layout_toStartOf="@+id/btn_record" />
+        android:layout_alignBottom="@+id/record_stop_btn"
+        android:layout_toLeftOf="@+id/record_stop_btn"
+        android:layout_toStartOf="@+id/record_stop_btn" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Rec"
-        android:id="@+id/btn_record"
+        android:id="@+id/record_stop_btn"
+        android:onClick="onRecStopBtnClick"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/btn_stop"
-        android:layout_toStartOf="@+id/btn_stop"
-        android:onClick="onButtonClick" />
+        android:layout_toStartOf="@+id/save_btn" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/freq_ranges_txt"
+        android:layout_below="@+id/sample_name_txt"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Stop"
-        android:id="@+id/btn_stop"
+        android:text="Save"
+        android:id="@+id/save_btn"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="onButtonClick" />
+        android:onClick="onSaveBtnClick" />
+
 </RelativeLayout>
